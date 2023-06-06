@@ -38,6 +38,7 @@ const Auth = () => {
                         }
                         <Button
                             variant={"outline-success"}
+                            className='mt-2'
                         >
                             {isLogin ? 'Sign In' : 'Sign Up'}
                         </Button>
