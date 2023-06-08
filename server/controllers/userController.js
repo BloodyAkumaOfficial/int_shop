@@ -23,10 +23,10 @@ class UserController {
             return next(ApiError.bedRequest('User with this email is already created'));
         }
         const hasPass = await bcrypt.hash(password, 5);
-        const user = User.create({email, role, password: hasPass});
+        const user = await User.create({email, role, password: hasPass});
         const basket = await Basket.create({userId: user.id});
         const token = generateJWT(user.id, user.email, user.role)
-        return res.json({token})
+        return res.json(token)
     }
     async login (req, res, next) {
         const {email, password} = req.body;

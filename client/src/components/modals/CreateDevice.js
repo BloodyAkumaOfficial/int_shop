@@ -21,7 +21,7 @@ const CreateDevice = ({show, onHide}) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Add new Device
+                    Add new device
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>

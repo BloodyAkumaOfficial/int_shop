@@ -11,7 +11,7 @@ const CreateBrand = ({show, onHide}) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Add new Type
+                    Add new brand
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
