@@ -39,7 +39,7 @@ class UserController {
             return next(ApiError.internal('Password is incorrect'));
         }
         const token = generateJWT(user.id, user.email, user.role);
-        return res.json({token});
+        return res.json(token);
     }
     async check (req, res, next) {
         const token = generateJWT(req.user.id, req.user.email, req.user.role);

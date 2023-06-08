@@ -1,23 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, Container, Image, Row} from "react-bootstrap";
 import bigStar from '../assets/big_star.png'
+import {urlServer} from "../http";
+import {useParams} from 'react-router-dom';
+import {fetchOneDevice} from "../http/deviceAPI";
 
 const DevicePage = () => {
-    const device = {id: 1, name: '12 pro', price: 1200, rating: 5, img: 'https://apiua.icoola.ua/aimeos/1.d/files/a/e/aedacf71_apple-iphone-12-pro-256gb-graphite-icoola-1.jpg'};
-    const description = [
-        {id: 1, name: 'test', description: 'qwertyyyyyyyyyy'},
-        {id: 2, name: 'test', description: 'qwertyyyyyyyyyy'},
-        {id: 3, name: 'test', description: 'qwertyyyyyyyyyy'},
-        {id: 4, name: 'test', description: 'qwertyyyyyyyyyy'},
-        {id: 5, name: 'test', description: 'qwertyyyyyyyyyy'},
-        {id: 6, name: 'test', description: 'qwertyyyyyyyyyy'},
-    ]
+        const [device, setDevice] = useState({info: []});
+        const {id} = useParams();
+
+        useEffect(() => {
+            fetchOneDevice(id).then(data => setDevice(data))
+        }, [])
 
         return (
         <Container className='mt-3'>
             <Row>
                 <Col md={4}>
-                    <Image height={300} width={300} src={device.img}/>
+                    <Image height={300} width={300} src={urlServer + '/' + device.img}/>
                 </Col>
                 <Col md={4}>
                     <Row className='d-flex flex-column align-items-center'>
@@ -42,7 +42,7 @@ const DevicePage = () => {
             </Row>
             <Row className='d-flex flex-column mt-3'>
                 <h3>Device info</h3>
-                {description.map((info, index) =>
+                {device.info.map((info, index) =>
                     <Row key={info.id} style={{background: index % 2 === 0 ? 'lightgrey' : 'transparent', padding: 10}}>
                         {info.name}: {info.description}
                     </Row>

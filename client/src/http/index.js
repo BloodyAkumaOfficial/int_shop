@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const urlServer = 'http://localhost:5000';
+export const urlServer = 'http://localhost:5000';
 
 const $host = axios.create({
     baseURL: urlServer

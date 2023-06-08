@@ -7,7 +7,14 @@ import {observer} from "mobx-react-lite";
 
 const NavBar = observer( () => {
     const {user} = useContext(Context);
-    const history = useHistory()
+    const history = useHistory();
+
+    const logOut = () => {
+        user.setUser({});
+        user.setIsAuth(false);
+        localStorage.removeItem('token');
+        history.push(LOGIN_ROUTE);
+    }
 
     return (
             <Navbar bg="dark" variant="dark">
@@ -24,10 +31,7 @@ const NavBar = observer( () => {
                             <Button
                                 variant={'outline-light'}
                                 className="mx-lg-3"
-                                onClick={() => {
-                                    history.push(LOGIN_ROUTE);
-                                    user.setIsAuth(false);
-                                }}
+                                onClick={() => logOut()}
                             >
                                 Log Out
                             </Button>
@@ -36,7 +40,7 @@ const NavBar = observer( () => {
                         <Nav className="ml-auto" style={{color: 'white'}}>
                             <Button
                                 variant={'outline-light'}
-                                onClick={() => user.setIsAuth(true)}
+                                onClick={() => history.push(LOGIN_ROUTE)}
                             >
                                 Sign in
                             </Button>
