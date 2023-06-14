@@ -1,2 +1,2 @@
 # int_shop
-my first pet project of internet shop
+online shop develop by js express.js and react.js
